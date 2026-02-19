@@ -32,10 +32,10 @@ class Course(val courseId : Int){
         if(location != "NA"){ this.location = location }
         return true
     }
-    fun getCapacity() : Int{
+    fun _getCapacity() : Int{
         return this.capacity
     }
-    fun getStudents() : MutableList<Int> {
+    fun _getStudents() : MutableList<Int> {
         return this.students
     }
 
