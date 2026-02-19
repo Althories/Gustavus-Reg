@@ -25,6 +25,8 @@
     }
 
 
-fun main(){
-
+fun main() {
+    val calc2 = Course(1)
+    calc2.updateAtributes(title = "Calc2")
+    print(calc2.title)
 }
