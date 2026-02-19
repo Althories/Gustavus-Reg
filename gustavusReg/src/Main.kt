@@ -4,7 +4,7 @@ import java.util.Objects
 
 //Data globals
 object GlobalData {
-    var users : MutableList<Objects> = mutableListOf()
+    var users : MutableList<Objects> = mutableListOf() //Handles Admin, Student, Professor children
     var courses : MutableList<Objects> = mutableListOf()
     var degrees : MutableList<Objects> = mutableListOf()
     var departments : MutableList<Objects> = mutableListOf()
