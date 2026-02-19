@@ -12,7 +12,7 @@ class Course(val courseId : Int){
     var capacity : Int = -1
     var location : String  = "NA"
 
-    fun updateAtributes(
+    fun updateAttributes(
         title : String = "NA",
         credits: Int = -1,
         days: Array<Boolean> = arrayOf<Boolean>(false,false,false,false,false),
@@ -32,7 +32,7 @@ class Course(val courseId : Int){
     fun getStudents() : MutableList<Int> {
         return this.students
     }
-    
+
 }
 
 
