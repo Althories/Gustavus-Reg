@@ -1,3 +1,4 @@
+//Main function and Data Globals: Nikolas Kopek
 fun main() {
     var a = User(0)
     var b = Admin(1)
@@ -5,4 +6,8 @@ fun main() {
     println(a)
     println(b)
     println(c)
+
+    //data globals
+    var users = arrayOf
+
 }
