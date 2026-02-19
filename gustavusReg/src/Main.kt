@@ -1,13 +1,13 @@
-import java.util.Objects
-
 //Main function and Data Globals: Nikolas Kopek
+
+import java.util.Objects
 
 //Data globals
 object GlobalData {
-    var users : MutableList<Objects> = mutableListOf() //Handles Admin, Student, Professor children
-    var courses : MutableList<Objects> = mutableListOf()
-    var degrees : MutableList<Objects> = mutableListOf()
-    var departments : MutableList<Objects> = mutableListOf()
+    var users : MutableList<User> = mutableListOf() //Handles Admin, Student, Professor children
+    var courses : MutableList<Course> = mutableListOf()
+    var degrees : MutableList<Degree> = mutableListOf()
+    var departments : MutableList<Department> = mutableListOf()
 }
 
 fun main() {

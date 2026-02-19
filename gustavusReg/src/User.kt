@@ -5,6 +5,11 @@ open class User(val userId: Int) { //open means other classes can inherit from U
     private var password: String = ""
     private var accessing: Boolean = false //Whether user is currently accessing service
 
+    init {
+        //TODO hook up to data global
+        //init is called when a new instance of the class is created.
+    }
+
     private fun login(password: String): Boolean {
         this.accessing = password == this.password  //User accessing service if password matches
         return password == this.password            //Returns whether password matches
