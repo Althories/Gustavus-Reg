@@ -25,4 +25,4 @@ open class User(val userId: Int) { //open means other classes can inherit from U
 }
 
 //TODO whatever Unit testing applies to these
-//TODO implement createUser
+//TODO make it so new users are added to the global list of Users in Main (add init)
