@@ -1,3 +1,5 @@
+// Branden Hopper
+
 class Admin(userID: Int): User(userID) {
 
 		// Create a new instance of course

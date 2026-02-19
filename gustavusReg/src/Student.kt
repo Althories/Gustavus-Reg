@@ -14,11 +14,11 @@ class Student(userId: Int) : User(userId) {
         if (classes.contains(courseId))
             throw IllegalStateException("Already enrolled in this course dummy")
         // check capacity
-        if (course.students.size >= course.capacity)
+        if (Course.students.size >= Course.capacity)
             throw IllegalStateException("U too slow, course is full.")
         // updates
         classes.add(courseId)
-        course.students.add(this.userID)
+        Course.students.add(this.userId)
         return true
     }
 
@@ -26,7 +26,7 @@ class Student(userId: Int) : User(userId) {
         if (!classes.contains(courseId))
             throw IllegalStateException("U are not even in this course")
         classes.remove(courseId)
-        course.students.remove(this.userID)
+        Course.students.remove(this.userId)
         return true
     }
 
