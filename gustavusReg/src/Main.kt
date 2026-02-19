@@ -1,4 +1,15 @@
+import java.util.Objects
+
 //Main function and Data Globals: Nikolas Kopek
+
+//Data globals
+object GlobalData {
+    var users : MutableList<Objects> = mutableListOf()
+    var courses : MutableList<Objects> = mutableListOf()
+    var degrees : MutableList<Objects> = mutableListOf()
+    var departments : MutableList<Objects> = mutableListOf()
+}
+
 fun main() {
     var a = User(0)
     var b = Admin(1)
@@ -6,10 +17,4 @@ fun main() {
     println(a)
     println(b)
     //println(c)
-
-    //data globals
-    var users : MutableList<String> = mutableListOf()
-    var courses : MutableList<String> = mutableListOf()
-    var degrees : MutableList<String> = mutableListOf()
-    var departments : MutableList<String> = mutableListOf()
 }
