@@ -1,28 +1,32 @@
- class Course(val courseId : Int){
-        var title : String = "NA"
-        var credits: int = 4
-        var days : bool[] = [false,false,false,false,false]
-        var time : int = -1
-        var departmentId : int = -1
-        var description : str ="NA"
-        var students  : int[] = []
-        var capacity : int = -1
-        var location : str  = "NA"
+import kotlin.arrayOf
+import kotlin.collections.mutableListOf
 
-        fun updateAtributes(
-            title : String = "NA"
-            credits: int = -1
-            days : bool[] = [false,false,false,false,false]
-            time : int = -1
-            departmentId : int = -1
-            description : str ="NA"
-            capacity : int = 0
-            location : str  = "NA"){
-            if(title != "NA"){
-                this.title = title
-            }
+class Course(val courseId : Int){
+    var title : String = "NA"
+    var credits: Int = 4
+    var days =  arrayOf<Boolean>(false,false,false,false,false)
+    var time : Int = -1
+    var departmentId : Int = -1
+    var description : String ="NA"
+    var students  =  mutableListOf<Int>()
+    var capacity : Int = -1
+    var location : String  = "NA"
+
+    fun updateAtributes(
+        title : String = "NA",
+        credits: Int = -1,
+        days: Array<Boolean> = arrayOf<Boolean>(false,false,false,false,false),
+        time : Int = -1,
+        departmentId : Int = -1,
+        description : String ="NA",
+        capacity : Int = 0,
+        location : String  = "NA") : Boolean {
+        if(title != "NA"){
+            this.title = title
         }
+        return true
     }
+}
 
 
 fun main() {
