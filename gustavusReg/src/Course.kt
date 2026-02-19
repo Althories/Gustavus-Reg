@@ -26,6 +26,13 @@ class Course(val courseId : Int){
         }
         return true
     }
+    fun getCapacity() : Int{
+        return this.capacity
+    }
+    fun getStudents() : MutableList<Int> {
+        return this.students
+    }
+    
 }
 
 
