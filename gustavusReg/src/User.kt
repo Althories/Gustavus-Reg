@@ -1,15 +1,18 @@
-open class User(val userID: Int) {
+//User Class: Nikolas Kopek
+open class User(val userID: Int) { //open means other classes can inherit from User
     private var name: String = ""
     private var email: String = ""
     private var password: String = ""
-    private var accessing: Boolean = false
+    private var accessing: Boolean = false //Whether user is currently accessing service
 
+    //Login function
     private fun login(password: String): Boolean {
-        this.accessing = password == this.password
-        return password == this.password
+        this.accessing = password == this.password  //User accessing service if password matches
+        return password == this.password            //Returns whether password matches
     }
 
-    private fun logout() {this.accessing = false}
+    //Logout function
+    private fun logout() {this.accessing = false}   //User no longer accessing service upon logout
 
     private fun updateProfile(name: String = this.name, email: String = this.email) {
         this.name = name
@@ -17,3 +20,6 @@ open class User(val userID: Int) {
     }
 
 }
+
+//TODO whatever Unit testing applies to these
+//TODO implement createUser
