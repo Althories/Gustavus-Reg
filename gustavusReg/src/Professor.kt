@@ -1,7 +1,7 @@
 // Branden Hopper
 
-class Professor(userID: Int, var courses: IntArray, var officeLocation: String): User(userID) {
-    fun updateCourseDescription(courseID: Int) {
-        return
+class Professor(userId: Int, var currentCourses: MutableList<Int>, var officeLocation: String): User(userID) {
+    fun updateCourseDescription(courseId: Int, newDescription: String) {
+        courses[courseId].updateAttributes(description: newDescription)
     }
 }
