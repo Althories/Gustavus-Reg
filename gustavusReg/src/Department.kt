@@ -1,3 +1,4 @@
+// Hayden Jones
 class Department(departmentID: Int){
     private var name: String = ""
     private var courses = mutableListOf<Int>()
