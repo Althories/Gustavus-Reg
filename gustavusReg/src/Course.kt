@@ -21,9 +21,15 @@ class Course(val courseId : Int){
         description : String ="NA",
         capacity : Int = 0,
         location : String  = "NA") : Boolean {
-        if(title != "NA"){
-            this.title = title
-        }
+
+        if(title != "NA"){ this.title = title }
+        if(credits != -1){ this.credits = credits }
+        if(!days.contentEquals(arrayOf<Boolean>(false,false,false,false,false))){ this.days = days }
+        if(time != -1){ this.time = time }
+        if(departmentId != -1){ this.departmentId = departmentId }
+        if(description != "NA"){ this.description = description }
+        if(capacity != -1){ this.capacity = capacity }
+        if(location != "NA"){ this.location = location }
         return true
     }
     fun getCapacity() : Int{
