@@ -1,7 +1,7 @@
 // Branden Hopper (Reedspun)
 
 import kotlin.arrayOf
-class Admin(userId: Int): User(userId) {
+class Admin(userId: Int, private var name: String = "Not Set", private var email: String = "Not Set", private var password: String = "Not Set"): User(userId) {
 
     // Create a new instance of course
     // Returns true if course was successfully created, false otherwise

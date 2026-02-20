@@ -1,6 +1,6 @@
 //Cooper Ptacek
 
-class Student(userId: Int) : User(userId) {
+class Student(userId: Int, private var name: String = "Not Set", private var email: String = "Not Set", private var password: String = "Not Set") : User(userId) {
 
     //Initializers
     var gpa: Float = 0.0f

@@ -15,7 +15,8 @@ fun main() {
     var a = User(0)
     var b = Admin(1)
     //var c = Professor(2, intArrayOf(1, 2, 3, 4), "Olin")
-    println(a)
     println(b)
     //println(c)
 }
+
+//TODO Determine whether Unit Testing in Main is even necessary. I don't think it is tbh we can test in our own classes
