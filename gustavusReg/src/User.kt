@@ -29,7 +29,7 @@ open class User(val userId: Int) { //open means other classes can inherit from U
     }
     //private fun createUser() {
     //This function was originally in our UML diagram. We found this function to be unnecessary
-    //as its functionality was handled in Main.kt and we did not need users creating other users.
+    //as its functionality was handled in Main.kt, and we did not need users creating other users.
     //}
 }
 
