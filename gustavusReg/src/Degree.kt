@@ -1,9 +1,9 @@
 // Hayden Jones
 class Degree(val degreeId: Int) {
 
-    private var name: String = ""
-    private var requiredCourses = mutableListOf<Int>()
-    private var isMajor: Boolean = false
+    var name: String = ""
+    var requiredCourses = mutableListOf<Int>()
+    var isMajor: Boolean = false
 
     init {
 
