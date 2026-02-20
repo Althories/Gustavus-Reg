@@ -41,6 +41,14 @@ class Student(userId: Int, private var name: String = "Not Set", private var ema
         degrees.add(degreeId)
         return true
     }
+    fun updateGraduationDate(newDate: Int): Boolean {
+        val currentYear = 2026
+        if (newDate < currentYear) {
+            throw IllegalArgumentException("Do you have a time machine?")
+        }
+        graduationDate = newDate
+        return true
+    }
 }
 
 fun main() {
@@ -118,5 +126,19 @@ fun main() {
         println("Test 8 Failed: Enrolled successfully")
     } catch (e: Exception) {
         println("Test 8 Passed: ${e.message}")
+    }
+    // TEST 9: Valid Graduation Update
+    try {
+        student.updateGraduationDate(2028)
+        println("Test 9 Passed: Graduation date updated successfully")
+    } catch (e: Exception) {
+        println("Test 9 Failed: ${e.message}")
+    }
+    // TEST 10: Graduation Year in Past
+    try {
+        student.updateGraduationDate(2020)
+        println("Test 10 Failed: Invalid graduation year allowed")
+    } catch (e: Exception) {
+        println("Test 10 Passed: ${e.message}")
     }
 }
