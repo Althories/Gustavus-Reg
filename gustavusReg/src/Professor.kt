@@ -1,6 +1,6 @@
 // Branden Hopper
 
-class Professor(userId: Int, var currentCourses: MutableList<Int>, var officeLocation: String): User(userId) {
+class Professor(userId: Int, var currentCourses: MutableList<Int>, var officeLocation: String): User(userID) {
     fun updateCourseDescription(courseId: Int, newDescription: String) {
         courses[courseId].updateAttributes(description: newDescription)
     }

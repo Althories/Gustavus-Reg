@@ -4,10 +4,11 @@ import java.util.Objects
 
 //Data globals
 object GlobalData {
-    var users : MutableList<User> = mutableListOf() //Handles Admin, Student, Professor children
-    var courses : MutableList<Course> = mutableListOf()
-    var degrees : MutableList<Degree> = mutableListOf()
-    var departments : MutableList<Department> = mutableListOf()
+    // Maps object IDs to their actual objects
+    var users : MutableMap<Int, User> = mutableMapOf() //Handles Admin, Student, Professor children
+    var courses : MutableMap<Int, Course> = mutableMapOf()
+    var degrees : MutableMap<Int, Degree> = mutableMapOf()
+    var departments : MutableMap<Int, Department> = mutableMapOf()
 }
 
 fun main() {
