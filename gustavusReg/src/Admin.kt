@@ -142,15 +142,25 @@ class Admin(userId: Int): User(userId) {
     private fun removeCourse(courseId: Int): Boolean {
         if (courseId in GlobalData.courses) {
             // First we should remove all students from the course
-            for (s in GlobalData.courses[courseId]!!.students) {
-                (GlobalData.users[s] as Student).classes.remove(courseId)
+            for (studentId in GlobalData.courses[courseId]!!.students) {
+                (GlobalData.users[studentId] as Student).classes.remove(courseId)
+            }
+            // Then we should remove the course from its professors
+            // Unfortunately there's no easy way to do this since courses don't keep track of their professors,
+            // so I will just search every user until we find all professors.
+            for (userId in GlobalData.users.keys) {
+                if (GlobalData.users[userId] is Professor) {
+                    if (courseId in (GlobalData.users[userId] as Professor).currentCourses) {
+                        (GlobalData.users[userId] as Professor).currentCourses.remove(courseId)
+                    }
+                }
             }
             // Then we should remove the course from any degrees
-            //for (d in GlobalData.degrees) {
+            //for (degreeId in GlobalData.degrees) {
                 // Since degrees are private this is TODO
             //}
             // Then from its department
-            //for (d in GlobalData.departments) {
+            //for (departmentId in GlobalData.departments) {
                 // Same deal
             //}
             // Then finally we can remove it from the list of courses
