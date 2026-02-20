@@ -31,14 +31,13 @@ open class User(val userId: Int, private var name: String = "Not Set", private v
     }
 
     //Allows User to see account details. Additional implementation not included in our UML diagram.
-    public fun getAccountDetails() {
-        println("Account Details:\nName: $name\nEmail: $email\nPassword: $password")
+    override fun toString(): String {
+        return "Account Details:\nName: $name\nEmail: $email\nPassword: $password"
     }
 
     //private fun createUser() {
-    //This function was originally in our UML diagram. We found this function to be unnecessary
-    //as its functionality was handled in Main.kt, and we did not need users creating other users.
-    //}
+    //This function was originally in our UML diagram. We found this function had no reason to exist here
+    //as its functionality was handled in Main.kt, and we did not need users creating other users.}
 }
 
 fun main() {
@@ -48,9 +47,9 @@ fun main() {
         email = "Johnma_Jay@gustavus.edu",
         //password = "johnmaR00les"
     )
-    user1.getAccountDetails()
+    println(user1.toString())
     user1.updateProfile(name = "Junesma", password = "junesmaR00les")
-    user1.getAccountDetails()
+    println(user1.toString())
     //var user2 = User(0) Throws error defined in init
 }
 //TODO whatever Unit testing applies to User

@@ -2,7 +2,7 @@
 
 import java.util.Objects
 
-//Data globals
+//Data globals as defined in UML diagram
 object GlobalData {
     // Maps object IDs to their actual objects
     var users : MutableMap<Int, User> = mutableMapOf() //Handles Admin, Student, Professor children
