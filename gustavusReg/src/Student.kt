@@ -11,7 +11,7 @@ class Student(userId: Int) : User(userId) {
 
     //Course related functions
     fun enrollCourse(courseId: Int): Boolean {
-        val currentCourse = GlobalData.courses.find { it.courseId == courseId }
+        val currentCourse = GlobalData.courses[courseId]
             ?: throw IllegalArgumentException("Course not found")       //?: apparently called Elvis Operator, used since line 14 could return null
         if (classes.contains(courseId))                                 // effecively if course is null throw error, else use course
             throw IllegalStateException("Already enrolled in this course dummy")
@@ -25,7 +25,7 @@ class Student(userId: Int) : User(userId) {
     }
 
     fun dropCourse(courseId: Int): Boolean {
-        val currentCourse = GlobalData.courses.find { it.courseId == courseId }
+        val currentCourse = GlobalData.courses[courseId]
             ?: throw IllegalArgumentException("Course not found")
         if (!classes.contains(courseId))
             throw IllegalStateException("U are not even in this course")
@@ -51,8 +51,8 @@ fun main() {
     val course2 = Course(102)
     course2.updateAttributes(title = "Stats", capacity = 1)
 
-    GlobalData.courses.add(course1)
-    GlobalData.courses.add(course2)
+    GlobalData.courses.put(101,course1)
+    GlobalData.courses.put(102,course2)
 
     val student = Student(1)
 
