@@ -1,7 +1,7 @@
-// Branden Hopper
+// Branden Hopper (Reedspun)
 
-class Professor(userId: Int, var currentCourses: MutableList<Int>, var officeLocation: String): User(userID) {
+class Professor(userId: Int, var currentCourses: MutableSet<Int>, var officeLocation: String): User(userId) {
     fun updateCourseDescription(courseId: Int, newDescription: String) {
-        courses[courseId].updateAttributes(description: newDescription)
+        GlobalData.courses[courseId]!!.updateAttributes(description = newDescription)
     }
 }
