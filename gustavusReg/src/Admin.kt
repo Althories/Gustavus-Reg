@@ -64,10 +64,10 @@ class Admin(userId: Int, private var name: String = "Not Set", private var email
         return false
     }
 
-	// Change the graduating year of a student
+	// Change the year of a student
     // Returns true if student was successfully updated, false otherwise
     private fun updateYear(studentId: Int, newYear: Int): Boolean {
-        if (newYear > 2025
+        if (newYear > 0
             && studentId in GlobalData.users
             && GlobalData.users[studentId] is Student)
         {
@@ -101,6 +101,7 @@ class Admin(userId: Int, private var name: String = "Not Set", private var email
 
             (GlobalData.users[studentId] as Student).classes.add(courseId)
             GlobalData.courses[courseId]!!.students.add(studentId)
+            // Not using Student.kt's built-in enroll since admin can ignore capacity
             return true
         }
         return false
@@ -143,7 +144,7 @@ class Admin(userId: Int, private var name: String = "Not Set", private var email
         if (courseId in GlobalData.courses) {
             // First we should remove all students from the course
             for (studentId in GlobalData.courses[courseId]!!.students) {
-                (GlobalData.users[studentId] as Student).classes.remove(courseId)
+                (GlobalData.users[studentId] as Student).dropCourse(courseId)
             }
             // Then we should remove the course from its professors
             // Unfortunately there's no easy way to do this since courses don't keep track of their professors,
