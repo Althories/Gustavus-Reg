@@ -12,6 +12,14 @@ class Course(val courseId : Int){
     var capacity : Int = -1
     var location : String  = "NA"
 
+    init {
+        // Initializer block runs when an instance is created
+        if (this.courseId in GlobalData.courses.keys){
+            throw IllegalStateException("Guys, you can't do that")
+        }
+        GlobalData.courses[this.courseId] = this
+    }
+
     fun updateAttributes(
         title : String = "NA",
         credits: Int = -1,

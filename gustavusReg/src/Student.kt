@@ -51,8 +51,7 @@ fun main() {
     val course2 = Course(102)
     course2.updateAttributes(title = "Stats", capacity = 1)
 
-    GlobalData.courses.put(101,course1)
-    GlobalData.courses.put(102,course2)
+   
 
     val student = Student(1)
 
