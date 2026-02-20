@@ -51,7 +51,7 @@ fun main() {
     val course2 = Course(102)
     course2.updateAttributes(title = "Stats", capacity = 1)
 
-   
+
 
     val student = Student(1)
 

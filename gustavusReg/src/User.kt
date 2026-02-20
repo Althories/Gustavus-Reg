@@ -8,6 +8,10 @@ open class User(val userId: Int) { //open means other classes can inherit from U
     init {
         //TODO hook up to data global
         //init is called when a new instance of the class is created.
+        if (this.userId in GlobalData.courses.keys){
+            throw IllegalStateException("Guys, you can't do that")
+        }
+        GlobalData.users[this.userId] = this
     }
 
     private fun login(password: String): Boolean {
