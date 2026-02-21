@@ -1,23 +1,24 @@
 // Branden Hopper (Reedspun)
 
 import kotlin.arrayOf
+
 class Admin(userId: Int, private var name: String = "Not Set", private var email: String = "Not Set", private var password: String = "Not Set"): User(userId) {
 
     // Create a new instance of course
-    // Returns true if course was successfully created, false otherwise
-    private fun createCourse(courseId: Int, courseTitle: String): Boolean {
+    // Returns the course if course was successfully created or the course if it already exists
+    fun createCourse(courseId: Int, courseTitle: String): Course {
         if (courseId !in GlobalData.courses)
         {
             val course = Course(courseId)
             course.updateAttributes(title = courseTitle)
-            return true
+            return course
         }
-        return false
+        return (GlobalData.courses[courseId] as Course)
     }
 
     // Assign a course to a professor
     // Returns true if course was successfully assigned, false otherwise
-    private fun assignProfessor(professorId: Int, courseId: Int): Boolean {
+    fun assignProfessor(professorId: Int, courseId: Int): Boolean {
         if (professorId in GlobalData.users
             && GlobalData.users[professorId] is Professor
             && courseId !in (GlobalData.users[professorId] as Professor).currentCourses)
@@ -30,7 +31,7 @@ class Admin(userId: Int, private var name: String = "Not Set", private var email
 
 	// Change the amount of credits that a course has
     // Returns true if course was successfully updated, false otherwise
-    private fun updateCourseCredits(courseId: Int, newCredits: Int): Boolean {
+    fun updateCourseCredits(courseId: Int, newCredits: Int): Boolean {
         if (newCredits > -1
             && courseId in GlobalData.courses)
         {
@@ -42,7 +43,7 @@ class Admin(userId: Int, private var name: String = "Not Set", private var email
 
 	// Change the days that a course meets on
     // Returns true if course was successfully updated, false otherwise
-    private fun updateCourseDays(courseId: Int, newDays: Array<Boolean>): Boolean {
+    fun updateCourseDays(courseId: Int, newDays: Array<Boolean>): Boolean {
         if (newDays.size == 5
             && courseId in GlobalData.courses)
         {
@@ -54,7 +55,7 @@ class Admin(userId: Int, private var name: String = "Not Set", private var email
 
 	// Change the times that a course meets on
     // Returns true if course was successfully updated, false otherwise
-    private fun updateCourseTime(courseId: Int, newTime: Int): Boolean {
+    fun updateCourseTime(courseId: Int, newTime: Int): Boolean {
         if (newTime > -1
             && courseId in GlobalData.courses)
         {
@@ -66,7 +67,7 @@ class Admin(userId: Int, private var name: String = "Not Set", private var email
 
 	// Change the year of a student
     // Returns true if student was successfully updated, false otherwise
-    private fun updateYear(studentId: Int, newYear: Int): Boolean {
+    fun updateYear(studentId: Int, newYear: Int): Boolean {
         if (newYear > 0
             && studentId in GlobalData.users
             && GlobalData.users[studentId] is Student)
@@ -79,7 +80,7 @@ class Admin(userId: Int, private var name: String = "Not Set", private var email
 
 	// Change the GPA of a student
     // Returns true if student was successfully updated, false otherwise
-	private fun updateGPA(studentId: Int, newGPA: Float): Boolean {
+	fun updateGPA(studentId: Int, newGPA: Float): Boolean {
         if (newGPA >= 0.0f
             && studentId in GlobalData.users
             && GlobalData.users[studentId] is Student)
@@ -92,7 +93,7 @@ class Admin(userId: Int, private var name: String = "Not Set", private var email
 
 	// Assign a student to a course
     // Returns true if student and course were successfully updated, false otherwise
-    private fun registerStudent(studentId: Int, courseId: Int): Boolean {
+    fun registerStudent(studentId: Int, courseId: Int): Boolean {
         if (studentId in GlobalData.users
             && GlobalData.users[studentId] is Student
             && GlobalData.courses[courseId] is Course
@@ -111,7 +112,7 @@ class Admin(userId: Int, private var name: String = "Not Set", private var email
     // Returns a list of two booleans
     // The first element of the list is true if the course was successfully removed from the student.
     // The second, if the student was successfully removed from the course.
-    private fun removeStudent(studentId: Int, courseId: Int): Array<Boolean> {
+    fun removeStudent(studentId: Int, courseId: Int): Array<Boolean> {
         if (studentId in GlobalData.users
             && GlobalData.users[studentId] is Student
             && GlobalData.courses[courseId] is Course
@@ -132,7 +133,7 @@ class Admin(userId: Int, private var name: String = "Not Set", private var email
     // Takes a major (degree) ID and a list of courseId
     // and replaces the old list with the new list.
     // Returns true if degree is successfully updated, false otherwise.
-    private fun updateRequirements(degreeId: Int, courseList: Array<Int>): Boolean {
+    fun updateRequirements(degreeId: Int, courseList: Array<Int>): Boolean {
         // Everything in Degree.kt is private so I can't modify or even read it.
         // Once it gets updated to not be entirely private I will redo this function.
         return false
@@ -140,7 +141,7 @@ class Admin(userId: Int, private var name: String = "Not Set", private var email
 
 	// Remove a course from the database
     // Returns true if course is successfully removed, false otherwise.
-    private fun removeCourse(courseId: Int): Boolean {
+    fun removeCourse(courseId: Int): Boolean {
         if (courseId in GlobalData.courses) {
             // First we should remove all students from the course
             for (studentId in GlobalData.courses[courseId]!!.students) {
@@ -171,4 +172,23 @@ class Admin(userId: Int, private var name: String = "Not Set", private var email
         }
         return false
     }
+}
+
+fun main() {
+    val a1 = Admin(0, "John Admin", "jadmin@gleeble.gov", "1234")
+    val a2 = Admin(1, "Jane Admin", "jadmin2@gleeble.gov", "4321")
+    val p1 = Professor(2, "Louis Yu", "lyu@gustavus.edu", "louis'sPasswordDONOTSTEAL", mutableListOf(), "Olin 999")
+    val p2 = Professor(3, "Guarionex Salivia", "gsalivia@gustavus.edu", "GuarioPrism", mutableListOf(), "Olin 1234")
+    val s1 = Student(4, "Gus Davis", "gus@gustavus.edu", "adolphus")
+    val s2 = Student(5)
+    val s3 = Student(6)
+    val s4 = Student(7)
+    val s5 = Student(8)
+    val s6 = Student(999)
+    val c1: Course = a1.createCourse(0, "MCS401")
+    val c2: Course = a2.createCourse(1, "FTS001")
+    a2.assignProfessor(p1.userId, 0)
+    a1.assignProfessor(p2.userId, 0)
+    a2.registerStudent(s1.userId, c1.courseId)
+    a1.registerStudent(s1.userId, c2.courseId)
 }
