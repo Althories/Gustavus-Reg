@@ -18,5 +18,3 @@ fun main() {
     println(b)
     //println(c)
 }
-
-//TODO Determine whether Unit Testing in Main is even necessary. I don't think it is tbh we can test in our own classes
