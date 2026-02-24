@@ -1,6 +1,7 @@
 import kotlin.arrayOf
 import kotlin.collections.mutableListOf
 
+//Course Class, BMCP Solhjem
 class Course(val courseId : Int){
     var title : String = "NA"
     var credits: Int = 4
@@ -46,12 +47,45 @@ class Course(val courseId : Int){
     fun _getStudents() : MutableList<Int> {
         return this.students
     }
-
+    override fun toString() : String{
+        return this.title + " in " + this.location + "\n\t" + this.description
+    }
 }
 
 
 fun main() {
     val calc2 = Course(1)
     calc2.updateAttributes(title = "Calc2")
-    print(calc2.title)
+
+    try {
+        Course(1)
+        println("Test 1 Failed: Repeat Class")
+    } catch (e: Exception) {
+        println("Test 1 Passed: ${e.message} error")
+    }
+
+    try {
+        println(calc2)
+
+        calc2.updateAttributes(title = "Calc2 But different", credits =1,
+        days = arrayOf<Boolean>(true,false,true,false,true),
+        time = 1000,
+        departmentId  = 1,
+        description  ="This is the course description",
+        capacity = 20,
+        location = "Olin 321")
+        println(calc2)
+        println("Test 2 Passed: Attributes Updated")
+    } catch (e: Exception){
+        println("Test 2 Failed: ${e.message}")
+    }
+
+
+    if (calc2.toString() == "Calc2 But different in Olin 321\n\tThis is the course description") {
+        println("Test 3 Passed: Attributes Match the String")
+    } else{
+    println("Test 3 Failed")
+    }
+
+
 }
