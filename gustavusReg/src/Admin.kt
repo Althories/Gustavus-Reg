@@ -13,20 +13,25 @@ class Admin(userId: Int, private var name: String = "Not Set", private var email
             course.updateAttributes(title = courseTitle)
             return course
         }
-        return (GlobalData.courses[courseId] as Course)
+        else {
+            throw IllegalStateException("Error: The selected courseId is already in use")
+        }
     }
 
     // Assign a course to a professor
     // Returns true if course was successfully assigned, false otherwise
     fun assignProfessor(professorId: Int, courseId: Int): Boolean {
-        if (professorId in GlobalData.users
-            && GlobalData.users[professorId] is Professor
-            && courseId !in (GlobalData.users[professorId] as Professor).currentCourses)
-        {
-            (GlobalData.users[professorId] as Professor).currentCourses.add(courseId)
-            return true
+        if (professorId in GlobalData.users) {  //If the supplied professor ID exists in User ID list
+            if (GlobalData.users[professorId] is Professor) { //If the supplied ID is for an instance of Professor
+                if (courseId !in (GlobalData.users[professorId] as Professor).currentCourses) { //If the supplied course ID is not in the professor's list of current courses
+                    (GlobalData.users[professorId] as Professor).currentCourses.add(courseId)
+                    return true
+                }
+                throw IllegalStateException("Error: This courseId is already assigned to this professor")
+            }
+            throw IllegalStateException("Error: This user is not a professor")
         }
-        return false
+        throw IllegalStateException("Error: This Id is not in use")
     }
 
 	// Change the amount of credits that a course has
@@ -175,6 +180,8 @@ class Admin(userId: Int, private var name: String = "Not Set", private var email
 }
 
 fun main() {
+
+    //Example instances used for unit testing
     val a1 = Admin(0, "John Admin", "jadmin@gleeble.gov", "1234")
     val a2 = Admin(1, "Jane Admin", "jadmin2@gleeble.gov", "4321")
     val p1 = Professor(2, "Louis Yu", "lyu@gustavus.edu", "louis'sPasswordDONOTSTEAL", mutableListOf(), "Olin 999")
@@ -191,4 +198,37 @@ fun main() {
     a1.assignProfessor(p2.userId, 0)
     a2.registerStudent(s1.userId, c1.courseId)
     a1.registerStudent(s1.userId, c2.courseId)
+
+    //TEST 1: Admin attempts to create course with a courseId already in use
+    try {
+        val testCourse1: Course = a1.createCourse(2, "NEW101")
+        val testCourse2: Course = a1.createCourse(2, "NEW102")
+        println("Test 1 Failed: Admin created course with duplicate courseId")
+    } catch (e: Exception) {
+        println("Test 1 Passed: ${e.message}")
+    }
+
+    //TEST 2: Admin attempts to call assignProfessor with an ID not in use (9999)
+    try {
+        a1.assignProfessor(9999, c1.courseId)
+        println("Test 2 Failed: Admin assigned professor to course without supplying an existing professorId")
+    } catch (e: Exception) {
+        println("Test 2 Passed: ${e.message}")
+    }
+
+    //TEST 3: Admin attempts to assign non-professor user to course
+    try {
+        a1.assignProfessor(5, c1.courseId)
+        println("Test 3 Failed: Admin assigned non-professor user to course")
+    } catch (e: Exception) {
+        println("Test 3 Passed: ${e.message}")
+    }
+
+    //TEST 4: Admin attempts to assign professor to course already assigned to them in currentCourses
+    try {
+        a1.assignProfessor(2, c1.courseId)
+        println("Test 4 Failed: Admin assigned professor to course they are already assigned to")
+    } catch (e: Exception) {
+        println("Test 4 Passed: ${e.message}")
+    }
 }
