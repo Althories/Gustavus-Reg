@@ -77,7 +77,8 @@ fun main() {
         println(calc2)
         println("Test 2 Passed: Attributes Updated")
     } catch (e: Exception){
-        println("Test 2 Failed: ${e.message}")
+
+        println("Test 2 Failed: Unable to update attributes ${e.message}")
     }
 
 
